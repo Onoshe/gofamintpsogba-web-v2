@@ -1,18 +1,44 @@
+'use client'
+import { useState, useEffect } from "react";
 import { MessageCard } from "@/components/pastor-corner/MessageCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-
+import { Skeleton } from "@/components/ui/skeleton";
 import { PastorMessage } from "@/lib/types";
+import { getRequest, pastorCornerAPI, transformPastorMessage } from "@/lib/api";
+import getPastorCornerMessages from "@/lib/data/pastorCorner";
 
+export function PastorSection() {
+    const [messages, setMessages] = useState<PastorMessage[]>([]);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+                // Fetch directly from the browser connecting to DB API
+                const res = await getRequest(pastorCornerAPI);
+                const fetchedMsg = getPastorCornerMessages(res.data || res);
+                const formattedMessages = Array.isArray(fetchedMsg)
+                    ? fetchedMsg.map((item) => transformPastorMessage(item, "homeData")).slice(0, 3)
+                    : [];
 
+                setMessages(formattedMessages);
+            } catch (err) {
+                console.error("Failed to fetch pastor messages for home:", err);
+                // Fallback to local
+                const staticData = getPastorCornerMessages();
+                const fallback = Array.isArray(staticData)
+                    ? staticData.map(item => transformPastorMessage(item, "homeData")).slice(0, 3)
+                    : [];
+                setMessages(fallback);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-
-export function PastorSection({ pastorMessages }: { pastorMessages: PastorMessage[] }) {
-    // Get the 3 most recent messages
-    //const latestMessages = [...PASTOR_CORNER_DATA].slice(0, 3);
-    const pastorMessagesExtr = pastorMessages.slice(0, 3) || [];
+        fetchMessages();
+    }, []);
 
     return (
         <section className="w-full py-16 md:py-24 bg-[#e6e3fb]">
@@ -37,23 +63,20 @@ export function PastorSection({ pastorMessages }: { pastorMessages: PastorMessag
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-                    {/*latestMessages.map((msg, i) => {
-                        const headerBg = ["bg-[seagreen]", "bg-[steelblue]", "bg-[tomato]"];
-                        return (
-                            <div key={msg.id} className="w-full max-w-[400px]">
-                                <MessageCard data={msg} headerBg={'bg-slate-400'} />
+                <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {loading ? (
+                        Array.from({ length: 3 }).map((_, i) => (
+                            <div key={i} className="w-[85vw] sm:w-[350px] shrink-0 snap-center md:w-full md:max-w-[400px] flex flex-col h-[400px]">
+                                <Skeleton className="h-full w-full rounded-xl" />
                             </div>
-                        )
-                    })*/}
-
-                    {pastorMessagesExtr.map((msg, i) => {
-                        return (
-                            <div key={msg.slug + i + ''} className="w-full max-w-[400px] flex flex-col h-full">
+                        ))
+                    ) : (
+                        messages.map((msg, i) => (
+                            <div key={msg.slug + i + ''} className="w-[85vw] sm:w-[350px] shrink-0 snap-center md:w-full md:max-w-[400px] flex flex-col h-full">
                                 <MessageCard data={msg} headerBg="bg-indigo-500" />
                             </div>
-                        )
-                    })}
+                        ))
+                    )}
                 </div>
             </div>
         </section>

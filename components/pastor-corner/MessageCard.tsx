@@ -27,6 +27,7 @@ export function MessageCard({ data, headerBg }: { data: PastorMessage, headerBg?
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="eager"
                 />
                 {/* Overlay AFTER Image */}
                 <div
@@ -46,7 +47,7 @@ export function MessageCard({ data, headerBg }: { data: PastorMessage, headerBg?
                     <span className="flex items-center gap-1"><User className="h-3 w-3" /> {pastorName}</span>
                     <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {data.date}</span>
                 </div>
-                <Link href={`/pastor-corner/${data.slug}`}>
+                <Link href={`/pastor-corner/read?message=${data.slug}`}>
                     <h3 className="font-bold text-xl leading-tight hover:text-primary cursor-pointer">
                         {data.title}
                     </h3>
@@ -82,7 +83,7 @@ export function MessageCard({ data, headerBg }: { data: PastorMessage, headerBg?
             </CardContent>
 
             <CardFooter className="p-6 pt-0 pb-7 mt-auto">
-                <Link href={`/pastor-corner/${data.slug}`} className="w-full cursor-pointer">
+                <Link href={`/pastor-corner/read?message=${data.slug}`} className="w-full cursor-pointer">
                     <Button variant="outline" className="cursor-pointer w-full text-primary border-primary/20 hover:bg-primary/5 transition-colors duration-300">
                         Read Message
                     </Button>

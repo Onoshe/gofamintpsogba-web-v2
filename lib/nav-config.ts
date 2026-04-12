@@ -4,5 +4,5 @@ export const navLinks = [
     { title: "Pastor's Corner", href: '/pastor-corner' },
     //{ title: 'Media', href: '/media' },
     { title: 'Contact Us', href: '/contact-us' },
-    { title: 'Admin', href: '/admin-login' }, // We can conditionally render this later
+    //{ title: 'Admin', href: '/admin-login' }, // We can conditionally render this later
 ];

@@ -6,7 +6,10 @@ import { PlayCircle } from "lucide-react";
 export default function MediaPage() {
     return (
         <div className="flex flex-col min-h-screen">
-            <section className="w-full py-12 bg-slate-900 text-white text-center">
+            <section 
+                className="w-full py-12 text-white text-center bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/images/bgroundHome.jpg')" }}
+            >
                 <div className="container px-4 md:px-6">
                     <Badge variant="outline" className="px-4 py-1 text-yellow-400 border-yellow-400 mb-4">
                         Media Library

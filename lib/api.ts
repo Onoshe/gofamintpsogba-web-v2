@@ -5,11 +5,11 @@ import getPastorCornerMessages from './data/pastorCorner';
 
 
 export const pastorCornerAPI = "https://psogbaasset.gofamintpsogba.org.ng/official_site.php?t=official_site_pastorcorner";
-const siteDataUrl = "https://psogbaasset.gofamintpsogba.org.ng/official_site.php?t=official_site_data";
+export const siteDataUrl = "https://psogbaasset.gofamintpsogba.org.ng/official_site.php?t=official_site_data";
 const imgUrl = "https://psogbaasset.gofamintpsogba.org.ng/official_site.php?t=official_site_images";
 export const baseUrlAsset = "https://psogbaasset.gofamintpsogba.org.ng";
 export const baseUrlPhp = "https://phpserver.gofamintpsogba.org.ng";
-
+const DB_TOKEN = "GOFAMINT_PS_OGBA_WEB";
 
 
 async function fetchJson<T>(path: string): Promise<T> {
@@ -144,9 +144,9 @@ const mockAlbums: Album[] = [
   }
 ];
 
-export async function getAboutPS() {
-  const response = await getRequest(siteDataUrl);
-  const imgs = await getRequest(imgUrl);
+export async function getAboutPS(useToken?: boolean) {
+  const response = await getRequest(siteDataUrl, useToken);
+  const imgs = await getRequest(imgUrl, useToken);
   const siteImgs = groupUrl(imgs?.data);
   if (response?.data) {
     const siteData = getExtractInfo(response?.data);
@@ -290,11 +290,13 @@ export function getExtractInfo(data: RawSiteData[] = []): ExtractedInfo {
   const anchorGroup = 'AnchorAndFaithDeclaration';
   const upcomingProgSlug = 'upcoming-program-settings';
   const mediaLink = 'footer-social-media-link';
+  const advertControl = 'home_slides_advert_image_control';
   const aboutData = data?.find((dt) => dt.slug === aboutSlug);
   const contactUsData = data?.find((dt) => dt.slug === contactUsSlug);
   const copyWriteData = data?.find((dt) => dt.slug === copyWriteSlug);
   const upcomingProgSettings = data?.find((dt) => dt.slug === upcomingProgSlug);
   const mediaLinks = data?.find((dt) => dt.slug === mediaLink);
+  const advertControlData = data?.find((dt) => dt.slug === advertControl);
 
   const anchorAndFaith = data?.filter((dt) => dt.group === anchorGroup) || [];
   sortArrayByKey(anchorAndFaith, 'textShort1', 'ASC');
@@ -312,26 +314,25 @@ export function getExtractInfo(data: RawSiteData[] = []): ExtractedInfo {
 
   return {
     aboutData, contactUsData, copyWriteData, anchorAndFaith,
-    anchorSequence, upcomingProgSettings, latestAnchorAndFaith, mediaLinks
+    anchorSequence, upcomingProgSettings, latestAnchorAndFaith, mediaLinks, advertControlData
   }
 }
 
 
-export const getRequest = async (url: string) => {
+export const getRequest = async (url: string, useToken?: boolean) => {
   try {
     const res = await fetch(url, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${process.env.DB_TOKEN}`
+        "Authorization": useToken ? `Bearer ${process.env.DB_TOKEN}` : DB_TOKEN
       },
-      cache: 'force-cache'
+      cache: 'no-store' // ✅ better than cache: 'force-cache'
     });
     if (!res.ok) console.log(`API_ERROR_${res.status}`);
     const data = await res.json();
     return data;
   } catch (err) {
-    console.error("Failed to fetch pastor messages:", err);
-    return mockHome.aboutPS;
+    return { ok: false, error: err, data: [] };
   }
 };
 
@@ -339,7 +340,7 @@ export const getRequest = async (url: string) => {
 export const postRequest = async (url: string, body?: Record<string, unknown> | unknown) => {
   try {
     const headers: HeadersInit = {
-      "Authorization": `Bearer ${process.env.DB_TOKEN}`
+      "Authorization": DB_TOKEN
     };
 
     if (body) {
@@ -351,7 +352,8 @@ export const postRequest = async (url: string, body?: Record<string, unknown> | 
       headers,
       body: body ? JSON.stringify(body) : undefined,
     });
-    if (!res.ok) return ({ ok: false, data: [], error: `API_ERROR_${res.status}` });
+    //console.log(res);
+    if (!res.ok) return ({ ok: false, data: [], error: `API_ERROR_${res}` });
     const data = await res.json();
     return data;
   } catch (err) {

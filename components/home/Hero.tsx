@@ -13,6 +13,7 @@ export function Hero({ slidesImg }: { slidesImg?: RawImageData[] }) {
 
     const defaultBg = 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2673&auto=format&fit=crop';
     const images = slidesImg?.length ? slidesImg.map(img => img.imgPath) : [defaultBg];
+    //console.log(slidesImg);
 
     // ✅ Define which slide indexes should use "advert" (full-image) mode.
     // e.g. new Set([1, 3]) means slide index 1 and 3 are adverts.

@@ -1,19 +1,16 @@
 
 
 import { Badge } from "@/components/ui/badge";
-import { getPastorMessages } from "@/lib/api";
 import PastorCornerClient from "@/components/pastor-corner/PastorCornerClient";
 
-
-
-export default async function PastorCorner() {
-    const pastorMessages = await getPastorMessages();
-    //const pastorMessages = getPastorCornerMessages();
-
+export default function PastorCorner() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="w-full py-12 md:py-24 lg:py-32 bg-slate-900 text-white text-center">
+            <section
+                className="w-full py-12 md:py-24 lg:py-32 text-white text-center bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "linear-gradient(rgb(15, 23, 42), rgba(15, 23, 42, 0.85)), url('/images/bgroundHome.jpg')" }}
+            >
                 <div className=" px-4 md:px-6">
                     <Badge variant="outline" className="px-4 py-1 text-yellow-400 border-yellow-400 mb-4">
                         Spiritual Nourishment
@@ -27,8 +24,7 @@ export default async function PastorCorner() {
                 </div>
             </section>
 
-            <PastorCornerClient pastorMessages={pastorMessages} />
-
+            <PastorCornerClient />
         </div>
     );
 }

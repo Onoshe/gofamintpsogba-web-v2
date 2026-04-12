@@ -38,11 +38,11 @@ export function AboutSection() {
                                 <span>Who We Are</span>
                             </div>
                             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl text-[#7e1604] mb-4">
-                                A <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-600 to-yellow-500">5-Star</span> Church Built on the <span className="text-[#a51c03]">Solid Rock</span>
+                                A <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-600 to-yellow-500 hidden">5-Star</span> Church Built on the <span className="text-[#a51c03]">Solid Rock</span>
                             </h2>
                             <p className="text-slate-600 md:text-lg leading-relaxed text-justify mb-2">
-                                GOFAMINT Pacesetters Assembly (PS), Ogba, is a vibrant community dedicated to preaching the Word of God.
-                                We are positioned to raise a dynamic body of believers. As a 5-Star Church, our foundation is built on five core pillars:
+                                GOFAMINT Pacesetters Assembly (PS), Ogba is a vibrant assembly of The Gospel Faith Mission International (GOFAMINT), committed to raising a dynamic and impactful body of believers.
+                                As a 5-Star Church, our identity and operations are anchored on five core pillars that define our values, culture, and mission:
                             </p>
                         </div>
 

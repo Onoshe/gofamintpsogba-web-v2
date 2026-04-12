@@ -128,6 +128,7 @@ export type ExtractedInfo = {
   upcomingProgSettings?: RawSiteData;
   latestAnchorAndFaith: RawSiteData | [];
   mediaLinks?: RawSiteData;
+  advertControlData?: RawSiteData;
 };
 
 export type RawImageData = {

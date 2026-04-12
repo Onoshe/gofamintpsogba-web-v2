@@ -20,10 +20,10 @@ export default function RightColumn() {
         e.preventDefault();
         setSendingMail(true);
         await handlePostMail({ form: formData }).then((res) => {
-            console.log(res);
+            //console.log(res);
             setSendingMail(false);
+            if (res?.ok) { setFormData({ firstname: '', lastName: '', email: '', message: '' }) }
         });
-        //setFormData({ firstname: '', lastName: '', email: '', message: '' });
     };
 
     return (
