@@ -1,6 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ABOUT_DATA, gofamintAim, gofamintAimBibleRef, bibleVerses } from "@/lib/constants";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "About GOFAMINT Ogba",
+    description:
+        "Learn about The Gospel Faith Mission International (GOFAMINT) Pacesetters Assembly, Ogba, Ikeja, Lagos, our mission, beliefs, and church story.",
+    alternates: {
+        canonical: "/about/",
+    },
+};
 
 export default function AboutPage() {
     return (

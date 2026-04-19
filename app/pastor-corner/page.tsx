@@ -2,6 +2,16 @@
 
 import { Badge } from "@/components/ui/badge";
 import PastorCornerClient from "@/components/pastor-corner/PastorCornerClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Pastor's Corner | GOFAMINT Ogba",
+    description:
+        "Read faith-building messages and sermons from pastors at The Gospel Faith Mission International (GOFAMINT) Pacesetters Assembly, Ogba, Ikeja, Lagos.",
+    alternates: {
+        canonical: "/pastor-corner/",
+    },
+};
 
 export default function PastorCorner() {
     return (

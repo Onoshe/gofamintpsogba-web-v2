@@ -10,7 +10,7 @@ const imgUrl = "https://psogbaasset.gofamintpsogba.org.ng/official_site.php?t=of
 export const baseUrlAsset = "https://psogbaasset.gofamintpsogba.org.ng";
 export const baseUrlPhp = "https://phpserver.gofamintpsogba.org.ng";
 const DB_TOKEN = "GOFAMINT_PS_OGBA_WEB";
-
+export const baseUrl = 'https://gofamintpsogba.org.ng';
 
 async function fetchJson<T>(path: string): Promise<T> {
   if (!API_BASE) {
@@ -30,7 +30,7 @@ const mockSettings: SiteSettings = {
     'We are rooted in the Word, empowered by the Spirit, and committed to raising kingdom pacesetters across generations.',
   serviceTimes: ['Sunday Worship 8:00 AM', 'Midweek Service 6:00 PM'],
   address: 'Plot 10, Community Road, Ogba, Lagos',
-  contactEmail: 'info@gofamintogba.org',
+  contactEmail: 'feedback@gofamintpsogba.org.ng',
   contactPhone: '+234 800 000 0000',
   giving: 'Tithes, offerings, and project giving are accepted via bank transfer and on-site giving.',
   hq: 'Gospel Faith Mission Int\'l HQ, 36 Opebi Road, Ikeja, Lagos',

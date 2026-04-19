@@ -44,7 +44,7 @@ export default function HomeContentClient() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen min-w-0 overflow-x-hidden">
             <Hero slidesImg={slidesImg} />
             <Anchor text={faithDacl} />
             <AboutSection />

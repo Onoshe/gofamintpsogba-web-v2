@@ -77,7 +77,7 @@ export function Hero({ slidesImg }: { slidesImg?: RawImageData[] }) {
                 <p className="mx-auto max-w-[700px] text-slate-200 md:text-xl font-light">
                     {"Experience God's presence, power, and purpose in a family-oriented community."}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                <div className="hidden lg:flex flex-col sm:flex-row gap-4 justify-center mt-8">
                     <Button size="lg" className="text-lg px-8 bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-bold" asChild>
                         <Link href="/contact-us">
                             Plan Your Visit

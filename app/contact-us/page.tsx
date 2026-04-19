@@ -8,6 +8,16 @@ import { MapPin, Clock, CreditCard, Phone, Mail, Globe } from "lucide-react";
 import SendMail from "@/components/contactUs/RightColumn";
 import RightColumn from "@/components/contactUs/RightColumn";
 import CopyButton from "@/components/contactUs/CopyButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact GOFAMINT Ogba",
+    description:
+        "Contact The Gospel Faith Mission International (GOFAMINT) Pacesetters Assembly, Ogba, Ikeja, Lagos for worship times, location, and inquiries.",
+    alternates: {
+        canonical: "/contact-us/",
+    },
+};
 
 export default function ContactPage() {
     return (

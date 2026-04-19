@@ -2,6 +2,16 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PlayCircle } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Media | GOFAMINT Ogba",
+    description:
+        "Watch sermons and explore church media from The Gospel Faith Mission International (GOFAMINT) Pacesetters Assembly, Ogba, Ikeja, Lagos.",
+    alternates: {
+        canonical: "/media/",
+    },
+};
 
 export default function MediaPage() {
     return (

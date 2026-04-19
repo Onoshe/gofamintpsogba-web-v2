@@ -20,7 +20,7 @@ import {
 
 
 export const SocialMediaShare = ({ topic, id }) => {
-  const urlDomain = "http://localhost:3000";
+  const urlDomain = "https://gofamintpsogba.org.ng";
   const shareUrl = `${urlDomain}/pastor-corner/${id}`; //`https://${urlDomain}${pathNameRaw}`;
   const title = topic;
   const hashtag = "#GofamintPsOgbaPastorCorner";

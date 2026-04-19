@@ -79,7 +79,8 @@ export function Footer() {
 
             {/* Bottom Copyright */}
             <div className="border-t border-slate-800 bg-slate-950 py-6 text-center text-sm text-slate-500">
-                <p>© {currentYear} GOFAMINT Pacesetters Assembly, Ogba. All rights reserved.</p>
+                <p>© {currentYear} GOFAMINT Pacesetters Assembly, Ogba.</p>
+                <p>All rights reserved.</p>
             </div>
         </footer>
     );
